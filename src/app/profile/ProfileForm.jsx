@@ -4,14 +4,14 @@ import { useState } from "react";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 
-export default function ProfileForm({ user }: { user: any }) {
+export default function ProfileForm({ user }) {
   const [name, setName] = useState(user.name || "");
   const [image, setImage] = useState(user.image || "");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const router = useRouter();
 
-  const handleUpdate = async (e: React.FormEvent) => {
+  const handleUpdate = async (e) => {
     e.preventDefault();
     setLoading(true);
     setMessage("");

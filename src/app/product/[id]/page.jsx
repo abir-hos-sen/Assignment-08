@@ -5,7 +5,7 @@ import productsData from "@/data/products.json";
 import Link from "next/link";
 import { FiArrowLeft, FiShoppingCart, FiStar } from "react-icons/fi";
 
-export default async function ProductDetailsPage({ params }: { params: { id: string } }) {
+export default async function ProductDetailsPage({ params }) {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
