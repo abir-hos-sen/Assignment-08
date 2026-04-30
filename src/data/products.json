@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "name": "UV Protection Sunglasses",
+    "brand": "SunShade",
+    "price": 15,
+    "rating": 4.7,
+    "stock": 10,
+    "description": "Stylish UV protection sunglasses perfect for summer outings.",
+    "image": "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&q=80&w=600",
+    "category": "Accessories"
+  },
+  {
+    "id": 2,
+    "name": "Beach Vibes Tote Bag",
+    "brand": "SummerCo",
+    "price": 25,
+    "rating": 4.5,
+    "stock": 15,
+    "description": "A spacious and durable tote bag for all your beach essentials.",
+    "image": "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&q=80&w=600",
+    "category": "Accessories"
+  },
+  {
+    "id": 3,
+    "name": "Aloe Vera Sunscreen SPF 50",
+    "brand": "SkinCare+",
+    "price": 18,
+    "rating": 4.9,
+    "stock": 30,
+    "description": "Broad-spectrum SPF 50 sunscreen infused with soothing aloe vera.",
+    "image": "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&q=80&w=600",
+    "category": "Skincare"
+  },
+  {
+    "id": 4,
+    "name": "Tropical Print SwimTrunks",
+    "brand": "WaveRider",
+    "price": 30,
+    "rating": 4.6,
+    "stock": 20,
+    "description": "Quick-dry tropical print swim trunks for a perfect day at the beach.",
+    "image": "https://images.unsplash.com/photo-1588117260148-b47818741c74?auto=format&fit=crop&q=80&w=600",
+    "category": "Clothing"
+  },
+  {
+    "id": 5,
+    "name": "Cooling Hydration Mist",
+    "brand": "AquaFresh",
+    "price": 12,
+    "rating": 4.8,
+    "stock": 25,
+    "description": "Refreshing and hydrating facial mist to keep you cool under the sun.",
+    "image": "https://images.unsplash.com/photo-1629198688000-71f23e745b6e?auto=format&fit=crop&q=80&w=600",
+    "category": "Skincare"
+  },
+  {
+    "id": 6,
+    "name": "Straw Sun Hat",
+    "brand": "BeachBum",
+    "price": 22,
+    "rating": 4.4,
+    "stock": 12,
+    "description": "Classic wide-brim straw hat to protect you from the summer heat.",
+    "image": "https://images.unsplash.com/photo-1514327605112-b887c0e61c0a?auto=format&fit=crop&q=80&w=600",
+    "category": "Accessories"
+  }
+]
