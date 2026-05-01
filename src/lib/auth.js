@@ -17,6 +17,11 @@ export const auth = betterAuth({
     provider: "mongodb",
   }),
   baseURL: getBaseUrl(),
+  // Add this to allow Vercel preview links to work
+  trustedOrigins: [
+    getBaseUrl(),
+    "https://*.vercel.app"
+  ],
   emailAndPassword: {
     enabled: true,
   },
