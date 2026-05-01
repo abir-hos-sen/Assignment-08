@@ -3,7 +3,7 @@
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { FiUser, FiMail, FiCalendar, FiLogOut, FiShoppingBag, FiSettings, FiStar, FiHeart, FiMapPin, FiCreditCard, FiEdit2, FiCamera, FiCheck, FiX, FiLoader, FiLink } from "react-icons/fi";
+import { FiUser, FiMail, FiLogOut, FiShoppingBag, FiStar, FiEdit2, FiCheck, FiX, FiLoader, FiLink } from "react-icons/fi";
 import Link from "next/link";
 import { toast } from "react-hot-toast";
 
@@ -44,7 +44,6 @@ export default function ProfilePage() {
       }
       
       toast.success("Profile updated successfully! 🎉");
-      // Close modal
       const modal = document.getElementById('edit_profile_modal');
       if (modal) modal.close();
       router.refresh();
@@ -70,7 +69,6 @@ export default function ProfilePage() {
     <div className="min-h-screen bg-[#f8f9fa] py-12 px-4 md:px-8 font-sans">
       <div className="max-w-7xl mx-auto">
         
-        {/* PROFILE HEADER - Reference style */}
         <div className="bg-white rounded-[2.5rem] p-10 mb-8 shadow-sm border border-gray-50 relative overflow-hidden flex flex-col md:flex-row items-center md:items-end justify-between gap-8 group">
           <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-r from-blue-50 to-purple-50 -z-0 opacity-50"></div>
           
@@ -102,12 +100,10 @@ export default function ProfilePage() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          
-          {/* LEFT COLUMN - Stats & Info */}
           <div className="lg:col-span-4 space-y-8">
             <div className="bg-white rounded-[2.5rem] p-8 shadow-sm border border-gray-50 flex flex-col items-center">
                <h3 className="text-xs font-black text-gray-400 uppercase tracking-[0.2em] mb-8 flex items-center gap-2">
-                 <FiSettings /> ACCOUNT INFO
+                 ACCOUNT INFO
                </h3>
                
                <div className="w-full space-y-6">
@@ -118,10 +114,6 @@ export default function ProfilePage() {
                  <div className="flex justify-between items-center p-4 bg-gray-50 rounded-2xl border border-gray-100">
                    <span className="text-xs font-bold text-gray-500 uppercase">Role</span>
                    <span className="text-gray-900 font-black">Member</span>
-                 </div>
-                 <div className="flex justify-between items-center p-4 bg-gray-50 rounded-2xl border border-gray-100">
-                   <span className="text-xs font-bold text-gray-500 uppercase">Join Date</span>
-                   <span className="text-gray-900 font-black">May 2024</span>
                  </div>
                </div>
 
@@ -137,19 +129,8 @@ export default function ProfilePage() {
                  </button>
                </div>
             </div>
-
-            <div className="bg-white rounded-[2.5rem] p-8 shadow-sm border border-gray-50">
-               <h3 className="text-xs font-black text-gray-400 uppercase tracking-[0.2em] mb-8 flex items-center gap-2">
-                 <FiStar /> LOYALTY POINTS
-               </h3>
-               <div className="text-center py-4">
-                 <p className="text-5xl font-black text-indigo-600 mb-2">2,450</p>
-                 <p className="text-xs font-bold text-gray-400">Available to redeem</p>
-               </div>
-            </div>
           </div>
 
-          {/* RIGHT COLUMN - Activity */}
           <div className="lg:col-span-8 space-y-8">
             <div className="bg-white rounded-[2.5rem] p-10 border border-gray-50 shadow-sm">
               <div className="flex justify-between items-center mb-10">
@@ -163,7 +144,6 @@ export default function ProfilePage() {
                 {[
                   { title: "Summer T-shirt Ordered", time: "2 hours ago", status: "75% Processed", icon: "📦" },
                   { title: "Review Posted: Sunglasses", time: "5 hours ago", status: "Verified", icon: "⭐" },
-                  { title: "Added to Wishlist: Beach Bag", time: "1 day ago", status: "Saved", icon: "❤️" },
                 ].map((item, idx) => (
                   <div key={idx} className="flex items-center gap-6 p-6 rounded-[2rem] bg-gray-50 hover:bg-indigo-50/30 border border-transparent hover:border-indigo-100 transition-all cursor-pointer group">
                     <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-2xl shadow-sm group-hover:scale-110 transition-transform">{item.icon}</div>
@@ -178,21 +158,9 @@ export default function ProfilePage() {
                 ))}
               </div>
             </div>
-
-            {/* Banner/CTA */}
-            <div className="bg-indigo-600 rounded-[2.5rem] p-10 text-white relative overflow-hidden group">
-               <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500 rounded-full -mr-20 -mt-20 blur-3xl opacity-50 group-hover:scale-125 transition-transform duration-1000"></div>
-               <h3 className="text-3xl font-black mb-4 relative z-10">Start a new journey?</h3>
-               <p className="text-indigo-100 mb-8 relative z-10 max-w-md">Explore our latest summer collections and expand your style even further.</p>
-               <Link href="/products" className="bg-white text-indigo-600 px-10 py-4 rounded-2xl font-black text-sm relative z-10 inline-block hover:bg-yellow-400 hover:text-black transition-all active:scale-95 shadow-xl">
-                 BROWSE PRODUCTS
-               </Link>
-            </div>
           </div>
-
         </div>
 
-        {/* EDIT PROFILE MODAL */}
         <dialog id="edit_profile_modal" className="modal">
           <div className="modal-box bg-white rounded-[2.5rem] p-10 max-w-md border border-gray-100 shadow-2xl">
             <div className="flex justify-between items-center mb-8">

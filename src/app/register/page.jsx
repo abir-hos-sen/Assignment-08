@@ -22,7 +22,7 @@ export default function RegisterPage() {
     setError("");
 
     try {
-      const { data, error: signUpError } = await signUp.email({
+      const { error: signUpError } = await signUp.email({
         email,
         password,
         name,
@@ -35,6 +35,7 @@ export default function RegisterPage() {
         router.push("/login");
       }
     } catch (err) {
+      console.error(err);
       setError("An unexpected error occurred. Please try again.");
     } finally {
       setLoading(false);
@@ -48,6 +49,7 @@ export default function RegisterPage() {
         callbackURL: "/",
       });
     } catch (err) {
+      console.error(err);
       setError("Google login failed.");
     }
   };

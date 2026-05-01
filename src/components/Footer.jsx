@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { FiInstagram, FiTwitter, FiFacebook, FiMail, FiPhone, FiMapPin, FiArrowRight } from "react-icons/fi";
+import { FiInstagram, FiFacebook, FiMail, FiPhone, FiMapPin, FiArrowRight } from "react-icons/fi";
 import { authClient } from "@/lib/auth-client";
 
 export default function Footer() {

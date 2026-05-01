@@ -27,7 +27,7 @@ export default function UpdateProfilePage() {
     setError("");
 
     try {
-      const { data, error: updateError } = await updateUser({
+      const { error: updateError } = await updateUser({
         name,
         image,
       });
@@ -39,6 +39,7 @@ export default function UpdateProfilePage() {
         router.refresh();
       }
     } catch (err) {
+      console.error(err);
       setError("An unexpected error occurred.");
     } finally {
       setLoading(false);
