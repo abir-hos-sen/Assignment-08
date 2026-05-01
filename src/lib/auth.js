@@ -18,10 +18,11 @@ export const auth = betterAuth({
   }),
   baseURL: getBaseUrl(),
   secret: process.env.BETTER_AUTH_SECRET,
-  // Add this to allow Vercel preview links to work
+  // Add broad trusted origins for Vercel environments
   trustedOrigins: [
     getBaseUrl(),
-    "https://*.vercel.app"
+    "https://*.vercel.app",
+    "http://localhost:3000"
   ],
   emailAndPassword: {
     enabled: true,

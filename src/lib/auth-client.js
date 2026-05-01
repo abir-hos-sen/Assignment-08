@@ -1,15 +1,11 @@
 import { createAuthClient } from "better-auth/react";
 
-// Helper to get the base URL and remove any extra quotes
-const getBaseUrl = () => {
-    let url = process.env.NEXT_PUBLIC_APP_URL || "";
-    // Remove extra quotes if present
-    url = url.replace(/['"]+/g, '');
-    return url;
-};
-
 export const authClient = createAuthClient({
-    baseURL: getBaseUrl()
+    // If running in browser, use current origin to avoid CORS
+    // If not, use the environment variable
+    baseURL: typeof window !== 'undefined' 
+        ? window.location.origin 
+        : (process.env.NEXT_PUBLIC_APP_URL || "").replace(/['"]+/g, '')
 });
 
 export const { 
