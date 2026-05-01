@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { FiSearch, FiShoppingBag, FiHeart } from "react-icons/fi";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 
@@ -15,55 +14,46 @@ export default function Navbar() {
   };
 
   return (
-    <div className="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-6xl z-50">
-      <div className="glassmorphism rounded-full px-6 py-3 flex items-center justify-between shadow-sm border border-slate-200 bg-white/70">
-        <Link href="/" className="text-xl font-bold tracking-tighter flex items-center gap-2 text-slate-800">
-          <span className="bg-black text-white px-2 py-1 rounded-md text-sm">Sun</span>
-          Cart.
-        </Link>
+    <header className="w-full bg-white border-b border-gray-100 sticky top-0 z-50">
+      <div className="container mx-auto px-6 py-4 flex items-center justify-between">
         
-        <div className="hidden md:flex flex-1 max-w-md mx-8 relative animate__animated animate__fadeInDown">
-          <input 
-            type="text" 
-            placeholder="Search products..." 
-            className="w-full bg-white rounded-full py-2 pl-5 pr-10 outline-none text-sm border border-slate-100 shadow-sm focus:border-slate-300 transition-colors text-slate-800"
-          />
-          <button className="absolute right-1 top-1 bg-black text-white p-1.5 rounded-full">
-            <FiSearch className="w-4 h-4" />
-          </button>
+        {/* Left: Logo */}
+        <div className="flex-1">
+          <Link href="/" className="text-3xl font-serif tracking-tighter text-black w-max">
+            SunCart
+          </Link>
         </div>
+        
+        {/* Middle: Links */}
+        <nav className="hidden md:flex gap-10 items-center justify-center flex-none">
+          <Link href="/" className="text-sm font-medium text-gray-600 hover:text-black transition-colors">Home</Link>
+          <Link href="/#products" className="text-sm font-medium text-gray-600 hover:text-black transition-colors">Products</Link>
+        </nav>
 
-        <div className="flex items-center gap-2 md:gap-4">
-          <button className="bg-white p-2.5 rounded-full shadow-sm hover:shadow-md transition-shadow text-slate-600">
-            <FiShoppingBag className="w-5 h-5" />
-          </button>
-          <button className="bg-white p-2.5 rounded-full shadow-sm hover:shadow-md transition-shadow text-red-500 hidden sm:block">
-            <FiHeart className="w-5 h-5 fill-red-50" />
-          </button>
-
+        {/* Right: Auth Buttons / Avatar */}
+        <div className="flex items-center justify-end flex-1 gap-4">
           {!isPending && session ? (
             <div className="dropdown dropdown-end">
-              <div tabIndex={0} role="button" className="bg-white flex items-center gap-3 pr-2 pl-4 py-1.5 rounded-full shadow-sm hover:shadow-md transition-shadow cursor-pointer border border-slate-100">
-                <span className="text-sm font-medium text-slate-700 hidden sm:block">{session.user.name}</span>
-                <div className="avatar">
-                  <div className="w-8 rounded-full">
-                    <img src={session.user.image || "https://ui-avatars.com/api/?name=" + session.user.name} alt="avatar" />
-                  </div>
+              <div tabIndex={0} role="button" className="flex items-center gap-3 cursor-pointer hover:opacity-80 transition-opacity">
+                <span className="text-sm font-medium text-gray-800 hidden sm:block">{session.user.name}</span>
+                <div className="w-9 h-9 rounded-full overflow-hidden border border-gray-200">
+                  <img src={session.user.image || "https://ui-avatars.com/api/?name=" + session.user.name} alt="avatar" className="w-full h-full object-cover" />
                 </div>
               </div>
-              <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow-lg bg-base-100 rounded-box w-52 mt-4 border border-slate-100 text-slate-800">
-                <li><Link href="/profile">My Profile</Link></li>
-                <li><button onClick={handleLogout} className="text-red-500">Logout</button></li>
+              <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow-lg bg-white rounded-xl w-48 mt-4 border border-gray-100 text-gray-800">
+                <li><Link href="/profile" className="hover:bg-gray-50">My Profile</Link></li>
+                <li><button onClick={handleLogout} className="text-red-500 font-medium hover:bg-red-50">Logout</button></li>
               </ul>
             </div>
           ) : !isPending && (
-            <div className="flex gap-2">
-              <Link href="/login" className="btn btn-sm btn-ghost rounded-full px-4 text-slate-700">Login</Link>
-              <Link href="/register" className="btn btn-sm bg-black text-white hover:bg-slate-800 rounded-full px-4 border-none">Register</Link>
+            <div className="flex gap-4 items-center">
+              <Link href="/login" className="text-sm font-medium text-gray-600 hover:text-black transition-colors">Login</Link>
+              <Link href="/register" className="bg-black text-white text-sm font-medium py-2 px-5 rounded-full hover:bg-gray-800 transition-colors">Register</Link>
             </div>
           )}
         </div>
+
       </div>
-    </div>
+    </header>
   );
 }
