@@ -33,4 +33,11 @@ export const auth = betterAuth({
       clientSecret: (process.env.GOOGLE_CLIENT_SECRET || "").replace(/['"]+/g, ''),
     },
   },
+  // Improved error logging for production
+  onResponse: (response) => {
+    if (response.status === 500) {
+        console.error("BetterAuth 500 Error: Check your environment variables and database connection.");
+    }
+    return response;
+  }
 });
