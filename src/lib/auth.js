@@ -17,6 +17,7 @@ export const auth = betterAuth({
     provider: "mongodb",
   }),
   baseURL: getBaseUrl(),
+  secret: process.env.BETTER_AUTH_SECRET,
   // Add this to allow Vercel preview links to work
   trustedOrigins: [
     getBaseUrl(),
