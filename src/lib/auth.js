@@ -17,12 +17,19 @@ export const auth = betterAuth({
   }),
   baseURL: getBaseUrl(),
   secret: process.env.BETTER_AUTH_SECRET,
-  // Ensure cookies are shared across all vercel subdomains if needed
-  // or at least properly handled on the main domain
+  // Adding more robust session settings
   session: {
+    expiresIn: 60 * 60 * 24 * 7, // 7 days
+    updateAge: 60 * 60 * 24, // 1 day
     cookieCache: {
         enabled: true,
-        maxAge: 5 * 60 // 5 minutes
+        maxAge: 5 * 60
+    }
+  },
+  // Advanced cookie settings for cross-subdomain support
+  advanced: {
+    crossTab: {
+        enabled: true
     }
   },
   trustedOrigins: [
