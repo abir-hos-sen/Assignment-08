@@ -4,11 +4,16 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-// Helper to get the base URL and remove any extra quotes
+// Improved helper to get the base URL for production
 const getBaseUrl = () => {
-    let url = process.env.NEXT_PUBLIC_APP_URL || "";
-    // Remove extra quotes if present
-    url = url.replace(/['"]+/g, '');
+    // Priority 1: Check for VERCEL_URL (provided by Vercel)
+    if (process.env.VERCEL_URL) {
+        return `https://${process.env.VERCEL_URL}`;
+    }
+    // Priority 2: Use NEXT_PUBLIC_APP_URL and sanitize it
+    let url = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+    url = url.replace(/['"]+/g, ''); // Remove quotes
+    if (url.endsWith('/')) url = url.slice(0, -1); // Remove trailing slash
     return url;
 };
 
@@ -18,7 +23,6 @@ export const auth = betterAuth({
   }),
   baseURL: getBaseUrl(),
   secret: process.env.BETTER_AUTH_SECRET,
-  // Add broad trusted origins for Vercel environments
   trustedOrigins: [
     getBaseUrl(),
     "https://*.vercel.app",
@@ -33,11 +37,4 @@ export const auth = betterAuth({
       clientSecret: (process.env.GOOGLE_CLIENT_SECRET || "").replace(/['"]+/g, ''),
     },
   },
-  // Improved error logging for production
-  onResponse: (response) => {
-    if (response.status === 500) {
-        console.error("BetterAuth 500 Error: Check your environment variables and database connection.");
-    }
-    return response;
-  }
 });
