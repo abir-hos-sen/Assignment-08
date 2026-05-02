@@ -5,22 +5,11 @@ import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { FiSun, FiShoppingCart, FiUser, FiLogOut, FiShoppingBag, FiChevronDown } from "react-icons/fi";
 import { useCart } from "@/context/CartContext";
-import { useEffect } from "react";
 
 export default function Navbar() {
-  const { data: session, isPending, error } = authClient.useSession();
+  const { data: session, isPending } = authClient.useSession();
   const { cartCount } = useCart();
   const router = useRouter();
-
-  useEffect(() => {
-    if (session) {
-        console.log("✅ Session Found:", session);
-    } else if (error) {
-        console.error("❌ Session Error:", error);
-    } else if (!isPending) {
-        console.log("ℹ️ No Session Found (User Logged Out)");
-    }
-  }, [session, isPending, error]);
 
   const handleLogout = async () => {
     await authClient.signOut();

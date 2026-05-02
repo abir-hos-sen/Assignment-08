@@ -4,7 +4,7 @@ Welcome to **SunCart**, a modern, responsive eCommerce platform designed for you
 
 ## 🚀 Live URL
 *(Replace with deployed URL later)*  
-[https://suncart-store.vercel.app](https://suncart-store.vercel.app)
+[https://assignment-08-sigma.vercel.app](https://assignment-08-sigma.vercel.app)
 
 ## 🎯 Purpose
 The purpose of this project is to build a robust, dynamic, and visually appealing Single Page Application (SPA) using Next.js. It features a unique, glassmorphism-inspired design with a dark-themed aesthetic, securely handles user authentication, and provides seamless navigation across protected and public routes without full page reloads.
