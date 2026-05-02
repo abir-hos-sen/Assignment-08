@@ -1,9 +1,9 @@
 import { createAuthClient } from "better-auth/react";
 
 export const authClient = createAuthClient({
-    // Hardcoding the production URL as the central auth server
-    // This allows any preview deployment to share the same session/database
-    baseURL: "https://assignment-08-sigma.vercel.app"
+    // Using a relative baseURL or dynamic detection
+    // This allows the client to talk to whatever domain it is currently on
+    baseURL: typeof window !== "undefined" ? window.location.origin : "http://localhost:3000"
 });
 
 export const { 

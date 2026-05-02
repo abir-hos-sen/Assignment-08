@@ -17,19 +17,27 @@ export const auth = betterAuth({
   }),
   baseURL: getBaseUrl(),
   secret: process.env.BETTER_AUTH_SECRET,
-  // Adding more robust session settings
   session: {
     expiresIn: 60 * 60 * 24 * 7, // 7 days
-    updateAge: 60 * 60 * 24, // 1 day
     cookieCache: {
         enabled: true,
         maxAge: 5 * 60
     }
   },
-  // Advanced cookie settings for cross-subdomain support
   advanced: {
+    useSecureCookies: true,
     crossTab: {
         enabled: true
+    }
+  },
+  // Adding explicit cookie configuration to ensure they are sent
+  cookie: {
+    namePrefix: "better-auth",
+    options: {
+        path: "/",
+        sameSite: "lax",
+        secure: true,
+        httpOnly: true
     }
   },
   trustedOrigins: [
