@@ -5,6 +5,11 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 const getBaseUrl = () => {
+    // If we are in Vercel, it provides VERCEL_URL automatically
+    if (process.env.VERCEL_URL) {
+        return `https://${process.env.VERCEL_URL}`;
+    }
+    // Fallback to manual env or hardcoded production link
     let url = process.env.NEXT_PUBLIC_APP_URL || "https://assignment-08-sigma.vercel.app";
     url = url.replace(/['"]+/g, '');
     if (url.endsWith('/')) url = url.slice(0, -1);
@@ -18,7 +23,7 @@ export const auth = betterAuth({
   baseURL: getBaseUrl(),
   secret: process.env.BETTER_AUTH_SECRET,
   session: {
-    expiresIn: 60 * 60 * 24 * 7, // 7 days
+    expiresIn: 60 * 60 * 24 * 7,
     cookieCache: {
         enabled: true,
         maxAge: 5 * 60
@@ -30,18 +35,8 @@ export const auth = betterAuth({
         enabled: true
     }
   },
-  // Adding explicit cookie configuration to ensure they are sent
-  cookie: {
-    namePrefix: "better-auth",
-    options: {
-        path: "/",
-        sameSite: "lax",
-        secure: true,
-        httpOnly: true
-    }
-  },
   trustedOrigins: [
-    getBaseUrl(),
+    "https://assignment-08-sigma.vercel.app",
     "https://*.vercel.app",
     "http://localhost:3000"
   ],
