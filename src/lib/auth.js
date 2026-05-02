@@ -4,31 +4,22 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-const getBaseUrl = () => {
-    // Strictly use the main production URL for Google OAuth compatibility
-    // Any preview link will redirect through this URL for authentication
-    return "https://assignment-08-sigma.vercel.app";
-};
-
 export const auth = betterAuth({
   database: prismaAdapter(prisma, {
     provider: "mongodb",
   }),
-  baseURL: getBaseUrl(),
+  // Let better-auth automatically detect the baseURL from the request
+  // This is the most compatible way for Vercel
+  baseURL: process.env.NEXT_PUBLIC_APP_URL || "https://assignment-08-sigma.vercel.app",
   secret: process.env.BETTER_AUTH_SECRET,
   session: {
-    expiresIn: 60 * 60 * 24 * 7,
+    expiresIn: 60 * 60 * 24 * 7, // 7 days
     cookieCache: {
         enabled: true,
         maxAge: 5 * 60
     }
   },
-  advanced: {
-    useSecureCookies: true,
-    crossTab: {
-        enabled: true
-    }
-  },
+  // Removing complex cookie overrides to let better-auth handle it
   trustedOrigins: [
     "https://assignment-08-sigma.vercel.app",
     "https://*.vercel.app",
