@@ -1,9 +1,8 @@
 import { createAuthClient } from "better-auth/react";
 
 export const authClient = createAuthClient({
-    // Using a relative baseURL or dynamic detection
-    // This allows the client to talk to whatever domain it is currently on
-    baseURL: typeof window !== "undefined" ? window.location.origin : "http://localhost:3000"
+    // Force baseURL to production to ensure session persistence matches server
+    baseURL: "https://assignment-08-sigma.vercel.app"
 });
 
 export const { 
