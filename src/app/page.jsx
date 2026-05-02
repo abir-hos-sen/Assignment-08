@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import productsData from "@/data/products.json";
-import { FiShoppingCart, FiArrowUpRight, FiStar } from "react-icons/fi";
+import { FiShoppingCart, FiArrowUpRight, FiStar, FiSun } from "react-icons/fi";
 import { useCart } from "@/context/CartContext";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
