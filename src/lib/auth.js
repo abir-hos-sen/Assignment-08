@@ -4,14 +4,11 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-// Improved helper to get the base URL for production
+// Strictly use the production URL to match Google OAuth settings
 const getBaseUrl = () => {
-    // Priority 1: Check for VERCEL_URL (provided by Vercel)
-    if (process.env.VERCEL_URL) {
-        return `https://${process.env.VERCEL_URL}`;
-    }
-    // Priority 2: Use NEXT_PUBLIC_APP_URL and sanitize it
-    let url = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+    // We must use the exact URL registered in Google Cloud Console
+    // to avoid redirect_uri_mismatch errors.
+    let url = process.env.NEXT_PUBLIC_APP_URL || "https://assignment-08-sigma.vercel.app";
     url = url.replace(/['"]+/g, ''); // Remove quotes
     if (url.endsWith('/')) url = url.slice(0, -1); // Remove trailing slash
     return url;
