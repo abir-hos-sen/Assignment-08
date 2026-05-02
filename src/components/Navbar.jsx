@@ -5,11 +5,22 @@ import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { FiSun, FiShoppingCart, FiUser, FiLogOut, FiShoppingBag, FiChevronDown } from "react-icons/fi";
 import { useCart } from "@/context/CartContext";
+import { useEffect } from "react";
 
 export default function Navbar() {
-  const { data: session, isPending } = authClient.useSession();
+  const { data: session, isPending, error } = authClient.useSession();
   const { cartCount } = useCart();
   const router = useRouter();
+
+  useEffect(() => {
+    if (session) {
+        console.log("✅ Session Found:", session);
+    } else if (error) {
+        console.error("❌ Session Error:", error);
+    } else if (!isPending) {
+        console.log("ℹ️ No Session Found (User Logged Out)");
+    }
+  }, [session, isPending, error]);
 
   const handleLogout = async () => {
     await authClient.signOut();
@@ -47,7 +58,9 @@ export default function Navbar() {
             )}
           </Link>
 
-          {!isPending && session ? (
+          {isPending ? (
+            <div className="w-9 h-9 bg-gray-50 rounded-xl animate-pulse"></div>
+          ) : session ? (
             <div className="dropdown dropdown-end">
               <div tabIndex={0} role="button" className="flex items-center gap-3 p-1.5 pr-3 bg-gray-50 rounded-2xl hover:bg-gray-100 transition-all border border-transparent hover:border-gray-200">
                 <div className="w-9 h-9 rounded-xl overflow-hidden border-2 border-white shadow-sm">
@@ -67,7 +80,6 @@ export default function Navbar() {
               </div>
               
               <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow-2xl bg-white rounded-[2rem] w-64 mt-4 border border-gray-100 animate__animated animate__fadeInUp animate__faster">
-                {/* User Info Header */}
                 <li className="p-4 border-b border-gray-50 mb-2 pointer-events-none">
                    <div className="flex flex-col gap-1">
                       <p className="text-sm font-black text-gray-900">{session.user.name}</p>
@@ -106,7 +118,7 @@ export default function Navbar() {
                 </li>
               </ul>
             </div>
-          ) : !isPending && (
+          ) : (
             <div className="flex gap-4 items-center">
               <Link href="/login" className="text-sm font-bold text-gray-600 hover:text-black transition-colors">Login</Link>
               <Link href="/register" className="bg-[#0d6efd] text-white text-sm font-black py-3 px-7 rounded-2xl hover:bg-blue-700 transition-all shadow-xl shadow-blue-100 active:scale-95">Register</Link>
