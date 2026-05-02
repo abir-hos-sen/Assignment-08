@@ -4,13 +4,10 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-// Strictly use the production URL to match Google OAuth settings
 const getBaseUrl = () => {
-    // We must use the exact URL registered in Google Cloud Console
-    // to avoid redirect_uri_mismatch errors.
     let url = process.env.NEXT_PUBLIC_APP_URL || "https://assignment-08-sigma.vercel.app";
-    url = url.replace(/['"]+/g, ''); // Remove quotes
-    if (url.endsWith('/')) url = url.slice(0, -1); // Remove trailing slash
+    url = url.replace(/['"]+/g, '');
+    if (url.endsWith('/')) url = url.slice(0, -1);
     return url;
 };
 
@@ -20,6 +17,14 @@ export const auth = betterAuth({
   }),
   baseURL: getBaseUrl(),
   secret: process.env.BETTER_AUTH_SECRET,
+  // Ensure cookies are shared across all vercel subdomains if needed
+  // or at least properly handled on the main domain
+  session: {
+    cookieCache: {
+        enabled: true,
+        maxAge: 5 * 60 // 5 minutes
+    }
+  },
   trustedOrigins: [
     getBaseUrl(),
     "https://*.vercel.app",
