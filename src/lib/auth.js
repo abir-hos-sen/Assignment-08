@@ -5,15 +5,9 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 const getBaseUrl = () => {
-    // If we are in Vercel, it provides VERCEL_URL automatically
-    if (process.env.VERCEL_URL) {
-        return `https://${process.env.VERCEL_URL}`;
-    }
-    // Fallback to manual env or hardcoded production link
-    let url = process.env.NEXT_PUBLIC_APP_URL || "https://assignment-08-sigma.vercel.app";
-    url = url.replace(/['"]+/g, '');
-    if (url.endsWith('/')) url = url.slice(0, -1);
-    return url;
+    // Strictly use the main production URL for Google OAuth compatibility
+    // Any preview link will redirect through this URL for authentication
+    return "https://assignment-08-sigma.vercel.app";
 };
 
 export const auth = betterAuth({
