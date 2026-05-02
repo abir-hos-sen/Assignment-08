@@ -61,6 +61,37 @@ export default function Home() {
           </div>
         </div>
 
+        {/* PROMO CARDS SECTION */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+          {/* Summer Sale Card */}
+          <div className="relative overflow-hidden bg-gradient-to-br from-[#0d6efd] to-blue-400 rounded-[2.5rem] p-8 md:p-10 shadow-xl group hover:shadow-2xl transition-all cursor-pointer">
+            <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:scale-110 transition-transform text-white">
+              <FiSun size={120} />
+            </div>
+            <div className="relative z-10">
+              <span className="bg-yellow-400 text-black px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest mb-4 inline-block">Limited Offer</span>
+              <h3 className="text-4xl md:text-5xl font-black text-white mb-4 leading-tight uppercase">Summer Sale <br/> <span className="text-yellow-400">50% OFF</span></h3>
+              <p className="text-white/80 font-medium mb-6">Unbeatable prices on all beach essentials.</p>
+              <button className="bg-white text-gray-900 px-8 py-3 rounded-xl font-bold text-sm flex items-center gap-2 hover:bg-yellow-400 transition-colors">
+                SHOP NOW <FiArrowUpRight />
+              </button>
+            </div>
+          </div>
+
+          {/* Hot Deals Card */}
+          <div className="relative overflow-hidden bg-gradient-to-br from-orange-600 to-red-500 rounded-[2.5rem] p-8 md:p-10 shadow-xl group hover:shadow-2xl transition-all cursor-pointer">
+            <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-white/10 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700"></div>
+            <div className="relative z-10">
+              <span className="bg-white text-orange-600 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest mb-4 inline-block">Best Value</span>
+              <h3 className="text-4xl md:text-5xl font-black text-white mb-4 leading-tight uppercase">Hot Deals <br/> <span className="animate-pulse">🔥</span></h3>
+              <p className="text-white/80 font-medium mb-6">Handpicked items at unbelievable prices.</p>
+              <button className="bg-gray-900 text-white px-8 py-3 rounded-xl font-bold text-sm flex items-center gap-2 hover:bg-white hover:text-gray-900 transition-colors">
+                GRAB DEALS <FiArrowUpRight />
+              </button>
+            </div>
+          </div>
+        </div>
+
         {/* Popular Products */}
         <div id="popular" className="bg-white rounded-[2rem] p-8 md:p-12 shadow-sm mb-16 border border-gray-50">
           <div className="flex justify-between items-end mb-10 gap-4">
