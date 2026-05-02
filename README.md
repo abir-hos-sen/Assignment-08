@@ -3,8 +3,8 @@
 Welcome to **SunCart**, a modern, responsive eCommerce platform designed for your summer essentials. Whether you're looking for UV protection sunglasses, beach totes, or soothing skincare, SunCart offers a premium shopping experience with a stunning UI.
 
 ## 🚀 Live URL
-*(Replace with deployed URL later)*  
-[https://assignment-08-sigma.vercel.app](https://assignment-08-sigma.vercel.app)
+https://assignment-08-sigma.vercel.app/
+
 
 ## 🎯 Purpose
 The purpose of this project is to build a robust, dynamic, and visually appealing Single Page Application (SPA) using Next.js. It features a unique, glassmorphism-inspired design with a dark-themed aesthetic, securely handles user authentication, and provides seamless navigation across protected and public routes without full page reloads.
